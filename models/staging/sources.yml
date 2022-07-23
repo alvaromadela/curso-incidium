@@ -1,0 +1,122 @@
+version: 2
+
+sources:
+  - name: adventure_works
+    schema: AdventureWorks
+    description: "this is the erp adventure works postgres"
+    tables:
+      - name: person
+        description: "specifying the customer name"
+        columns:
+          - name: businessentityid
+            tests:
+              - unique
+              - not_null
+          - name: firstname
+          - name: middlename
+          - name: lastname
+      - name: person_address
+        description: "specifying the customer city"
+        columns:
+          - name: addressid
+            tests:
+              - unique
+              - not_null
+          - name: city
+      - name: person_businessentityaddress
+        description: "specifying the relation of the customer with your address"
+        columns:
+          - name: businessentityid
+            tests:
+              - unique
+              - not_null
+          - name: addressid
+          - name: addresstypeid
+      - name: person_countryregion
+        description: "specifying the relation of the customer with your country" 
+        columns:
+          - name: countryregioncode
+            tests:
+              - unique
+              - not_null
+          - name: name
+      - name: person_stateprovince
+        description: "specifying the relation of the customer with your country" 
+        columns:
+          - name: stateprovinceid
+            tests:
+              - unique
+              - not_null
+          - name: stateprovincecode
+          - name: countryregioncode
+          - name: name
+      - name: production_product
+        description: "this are the products sold"
+        columns:
+          - name: productid
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: productnumber
+      - name: public_salesorderdetail
+        description: "these are the sales order details"
+        columns:
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
+          - name: salesorderdetailid
+          - name: orderqty
+          - name: productid
+          - name: unitprice
+          - name: unitpricediscount
+      - name: sales_creditcard
+        description: "these are the credit card types"
+        columns:
+          - name: creditcardid
+            tests:
+              - unique
+              - not_null
+          - name: cardtype
+      - name: sales_salesorderheader
+        description: "main sales table"
+        columns:
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
+          - name: status
+          - name: onlineorderflag
+          - name: purchaseordernumber
+          - name: accountnumber
+          - name: customerid
+          - name: salespersonid
+          - name: territoryid
+          - name: billtoaddressid
+          - name: shiptoaddressid
+          - name: shipmethodid
+          - name: creditcardid
+          - name: creditcardapprovalcode
+          - name: currencyrateid
+          - name: subtotal
+          - name: taxamt
+          - name: freight
+          - name: totaldue
+      - name: sales_salesorderheadersalesreason
+        description: these are the sales reason
+        columns:
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
+          - name: salesreasonid
+      - name: sales_salesreason
+        description: these are the sales reason
+        columns:
+          - name: salesreasonid
+            tests:
+              - unique
+              - not_null
+          - name: name
+          - name: reasontype
